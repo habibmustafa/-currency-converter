@@ -59,7 +59,7 @@ header ul li a:focus {
    color: black;
 }
 
-header ul li:first-child a:link {
+header .active a {
    color: black;
 }
 
@@ -74,6 +74,11 @@ header ul li:first-child a:link {
    font-size: 11px;
    letter-spacing: 0.06em;
    cursor: pointer;
+}
+
+.sign:hover {
+   background-color: #9054de;
+   color: #FFFFFF;
 }
 
 /* main style */
@@ -91,7 +96,7 @@ h1 {
    margin-bottom: 20px;
 }
 
-.parts {
+.boxs {
    width: 640px;
    display: flex;
    justify-content: space-between;
@@ -122,6 +127,7 @@ h6 {
    display: flex;
    justify-content: center;
    align-items: center;
+   cursor: pointer;
 }
 
 .currency li:first-child {
@@ -129,6 +135,11 @@ h6 {
 }
 .currency li:last-child {
    border-radius: 0px 3px 3px 0px;
+}
+
+.currency .active {
+   background-color: #833AE0;
+   color: #FFFFFF;
 }
 
 .calc {
