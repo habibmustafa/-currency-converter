@@ -44,6 +44,7 @@ header ul {
    align-items: center;
    position: relative;
    left: -30px;
+   user-select: none;
 }
 
 header ul li a {
@@ -74,6 +75,7 @@ header .active a {
    font-size: 11px;
    letter-spacing: 0.06em;
    cursor: pointer;
+   user-select: none;
 }
 
 .sign:hover {
@@ -109,20 +111,19 @@ h6 {
    margin-bottom: 5px;
 }
 
-
-/* asagida borderlere yeniden bax */
 .currency {
+   user-select: none;
    display: flex;
    width: 260px;
    height: 30px;
-   box-sizing: border-box;
    border-radius: 3px;
    margin-bottom: 20px;
+   border: 0.5px solid #E5E5E5;
 }
 
 .currency li {
    width: 65px;
-   border: 1px solid #E5E5E5;
+   border: 0.5px solid #E5E5E5;
    color: #C6C6C6;
    display: flex;
    justify-content: center;

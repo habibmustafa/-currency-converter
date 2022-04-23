@@ -26,7 +26,7 @@ let base = 'RUB', symbols = 'USD', ratio = 1, ratio2 = 1;
 function getFetch() {
    if(base == symbols) {
       constMoneyLeft.innerHTML = `1 ${base} = 1 ${base}`
-      constMoneyRight.innerHTML = `1 ${base} = 1 ${base}`
+      constMoneyRight.innerHTML = `1 ${symbols} = 1 ${symbols}`
       return moneyOut.value = moneyIn.value;
    }
    // left
@@ -38,24 +38,24 @@ function getFetch() {
       return data
    })
    .catch(err => console.log(err)) //bunu sonra duzelt
+
    // right
    fetch(`https://api.exchangerate.host/latest?base=${symbols}&symbols=${base} `)
    .then(res => res.json())
    .then(data => {
       ratio2 = data.rates[base]
-      ans2(data)
+         ans2(data)
       return data
    })
    .catch(err => console.log(err)) //bunu sonra duzelt
 }
-getFetch();
+getFetch()
 
 // checkLeft
 function choiceIn(elem) {
    currencyIn.forEach(elem => {
       elem.classList.remove('active')
    })
-
    elem.classList.add('active')
    return getFetch();
 }
@@ -78,23 +78,88 @@ currencyOut.forEach(elem => elem.addEventListener('click', () => {
    return choiceOut(elem)
 }) )
 
-
 // check
 function ans(data) {
+   if(base == symbols)
+      return moneyOut.value = moneyIn.value
    moneyOut.value = moneyIn.value * ratio;
    constMoneyLeft.innerHTML = `1 ${base} = ${ratio} ${symbols}`
 }
 
 function ans2(data) {
-   moneyIn.value = moneyOut.value * ratio2;
    constMoneyRight.innerHTML = `1 ${symbols} = ${ratio2} ${base}`
 }
 
+
+// (,) to (.)
+function point(e) {
+   if (e.key === ','){
+      // get old value
+      const start = e.target.selectionStart;
+      const end = e.target.selectionEnd;
+      const oldValue = e.target.value;
+      // replace point and change input value
+      const newValue = oldValue.slice(0, start) + '.' + oldValue.slice(end)
+      e.target.value = newValue;
+
+      // replace cursor
+      e.target.selectionStart = e.target.selectionEnd = start + 1;
+      e.preventDefault();
+  }
+   
+}
+
+function number(e) {
+   let buttons = {
+      '1': '1',
+      '2': '2',
+      '3': '3',
+      '4': '4',
+      '5': '5',
+      '6': '6',
+      '7': '7',
+      '8': '8',
+      '9': '9',
+      '0': '0',
+      '.': '.',
+      ',': ','
+   }
+    
+   if(e.key !== buttons[e.key]) {
+      e.preventDefault()
+      return false
+   }
+}
+moneyIn.addEventListener('keypress', (e) => {
+   if(moneyIn.value.indexOf('.') != -1) {
+      if((e.key === '.') || (e.key === ',')) {
+         e.preventDefault()
+         return false
+      }
+   }
+   number(e)
+   point(e)
+})
+moneyOut.addEventListener('keypress', (e) => {
+   if(moneyOut.value.indexOf('.') != -1) {
+      if((e.key === '.') || (e.key === ',')) {
+         e.preventDefault()
+         return false
+      }
+   }
+   number(e)
+   point(e)
+})
+
 // operation
-moneyIn.addEventListener('keyup', () => {
-   return ans();
+moneyIn.addEventListener('keyup', (e) => {
+   ans()
 })
 
 moneyOut.addEventListener('keyup', () => {
-   return ans2();
+   if(base == symbols)
+      return moneyIn.value = moneyOut.value
+   moneyIn.value = moneyOut.value * ratio2;
 })
+
+// yoxlama
