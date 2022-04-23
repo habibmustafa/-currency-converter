@@ -30,7 +30,7 @@ function getFetch() {
       return moneyOut.value = moneyIn.value;
    }
    // left
-   fetch(`https://api.exchangerate.host/latest?base=${base}&symbols=${symbols} `)
+   fetch(`https://api.exchangerate.host/latest?base=${base}&symbols=${symbols}`)
    .then(res => res.json())
    .then(data => {
       ratio = data.rates[symbols]
@@ -40,11 +40,11 @@ function getFetch() {
    .catch(err => console.log(err)) //bunu sonra duzelt
 
    // right
-   fetch(`https://api.exchangerate.host/latest?base=${symbols}&symbols=${base} `)
+   fetch(`https://api.exchangerate.host/latest?base=${symbols}&symbols=${base}`)
    .then(res => res.json())
    .then(data => {
       ratio2 = data.rates[base]
-         ans2(data)
+      ans2(data)
       return data
    })
    .catch(err => console.log(err)) //bunu sonra duzelt
