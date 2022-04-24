@@ -29,10 +29,12 @@ header .container {
    display: flex;
    justify-content: space-between;
    align-items: center;
+   position: relative;
 }
 
 .logo {
    background: url(../symbol/Asset.png);
+   background-size: cover;
    width: 89px;
    height: 23px;
 }
@@ -45,6 +47,7 @@ header ul {
    position: relative;
    left: -30px;
    user-select: none;
+   transition: .6s;
 }
 
 header ul li a {
@@ -56,7 +59,8 @@ header ul li a {
    color: #959BA4;
 }
 
-header ul li a:focus {
+header ul li a:hover {
+   transition: .3s;
    color: black;
 }
 
@@ -79,8 +83,15 @@ header .active a {
 }
 
 .sign:hover {
+   transition: .3s;
    background-color: #9054de;
    color: #FFFFFF;
+}
+
+.hamburger {
+   display: none;
+   transform: scale(1.4);
+   cursor: pointer;
 }
 
 /* main style */
@@ -89,17 +100,18 @@ main .container {
    display: flex;
    align-items: center;
    flex-direction: column;
+   max-width: 640px;
 }
 
 h1 {
-   width: 640px;
+   width: 100%;
    font-weight: 700;
    font-size: 36px;
    margin-bottom: 20px;
 }
 
 .boxs {
-   width: 640px;
+   width: 100%;
    display: flex;
    justify-content: space-between;
 }

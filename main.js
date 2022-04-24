@@ -1,4 +1,4 @@
-// navbar
+// navbar select
 const navbarActive = document.querySelectorAll("header ul li")
 
 navbarActive.forEach(element => {
@@ -10,6 +10,28 @@ navbarActive.forEach(element => {
    })
 })
 
+// navbar responsive
+const hamburger = document.querySelector('.hamburger')
+const navBar = document.querySelector('header ul')
+hamburger.addEventListener('click', () => {
+   if(navBar.style.display == 'flex') {
+      navBar.style.display = 'none'
+   }
+   else {
+      navBar.style.display = 'flex'
+   }
+})
+
+let x = window.matchMedia("(max-width: 880px)")
+x.addListener(() => {
+
+if (x.matches) {
+   navBar.style.display = "none";
+} else {
+   navBar.style.display = "flex";
+}
+})
+
 // main
 // variables
 const currencyIn = document.querySelectorAll('.box-left .currency li')
@@ -18,6 +40,7 @@ const moneyIn = document.querySelector('.box-left .money')
 const moneyOut = document.querySelector('.box-right .money')
 const constMoneyLeft = document.querySelector('.box-left .const-money')
 const constMoneyRight = document.querySelector('.box-right .const-money')
+const boxs = document.querySelector('.boxs')
 
 let base = 'RUB', symbols = 'USD', ratio = 1, ratio2 = 1;
 
@@ -37,7 +60,12 @@ function getFetch() {
       ans(data)
       return data
    })
-   .catch(err => console.log(err)) //bunu sonra duzelt
+   .catch(err => {
+      const error = document.createElement('p')
+      error.classList.add('error');
+      error.innerHTML = err;
+      boxs.append(error)
+   }) //bunu sonra duzelt
 
    // right
    fetch(`https://api.exchangerate.host/latest?base=${symbols}&symbols=${base}`)
