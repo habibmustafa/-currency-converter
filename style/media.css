@@ -22,8 +22,8 @@
       flex-direction: column;
       justify-content: space-around;
       background-color: #F5F5F6;
-      max-width: 150px;
-      height: 270px;
+      max-width: 200px;
+      height: 300px;
       top: 50px;
       right: 0;
       left: auto;
@@ -42,8 +42,8 @@
    }
 
    header ul li a {
-      font-size: 10px;
-      line-height: 12px;
+      font-size: 13px;
+      line-height: 14px;
       color: #726c6c;
    }
 
