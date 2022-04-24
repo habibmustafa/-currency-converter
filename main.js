@@ -158,7 +158,10 @@ function number(e) {
       return false
    }
 }
+
 moneyIn.addEventListener('keypress', (e) => {
+   
+
    if(moneyIn.value.indexOf('.') != -1) {
       if((e.key === '.') || (e.key === ',')) {
          e.preventDefault()
@@ -182,12 +185,17 @@ moneyOut.addEventListener('keypress', (e) => {
 // operation
 moneyIn.addEventListener('keyup', (e) => {
    ans()
+   if((moneyIn.value.length == 1) && (moneyIn.value[0] == '.'))
+      moneyOut.value = '0.'
+   
 })
 
 moneyOut.addEventListener('keyup', () => {
    if(base == symbols)
       return moneyIn.value = moneyOut.value
    moneyIn.value = moneyOut.value * ratio2;
+   if((moneyOut.value.length == 1) && (moneyOut.value[0] == '.'))
+      moneyIn.value = '0.'
 })
 
 // yoxlama
