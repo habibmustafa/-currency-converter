@@ -61,10 +61,11 @@ function getFetch() {
       return data
    })
    .catch(err => {
-      error = document.createElement('p')
-      error.classList.add('error');
-      error.innerHTML = err;
-      container.append(error)
+      // error = document.createElement('p')
+      // error.classList.add('error');
+      // error.innerHTML = err;
+      // container.append(error)
+      console.log(err);
    }) //bunu sonra duzelt
 
    // right
@@ -76,8 +77,7 @@ function getFetch() {
       return data
    })
    .catch(err => {
-      error.innerHTML = err;
-      container.append(error)
+      console.log(err);
    }) //bunu sonra duzelt
 }
 getFetch()
