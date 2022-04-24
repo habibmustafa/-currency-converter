@@ -181,3 +181,10 @@ h6 {
    color: #C6C6C6;
    margin-left: 2px;
 }
+
+.error {
+   position: absolute;
+   bottom: 100px;
+   font-size: 18px;
+   
+}

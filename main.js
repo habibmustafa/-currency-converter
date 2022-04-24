@@ -40,9 +40,9 @@ const moneyIn = document.querySelector('.box-left .money')
 const moneyOut = document.querySelector('.box-right .money')
 const constMoneyLeft = document.querySelector('.box-left .const-money')
 const constMoneyRight = document.querySelector('.box-right .const-money')
-const boxs = document.querySelector('.boxs')
+const container = document.querySelector('main .container')
 
-let base = 'RUB', symbols = 'USD', ratio = 1, ratio2 = 1;
+let base = 'RUB', symbols = 'USD', ratio = 1, ratio2 = 1, error = null;
 
 // Fetch
 // moneyIn.value = 1
@@ -61,10 +61,10 @@ function getFetch() {
       return data
    })
    .catch(err => {
-      const error = document.createElement('p')
+      error = document.createElement('p')
       error.classList.add('error');
       error.innerHTML = err;
-      boxs.append(error)
+      container.append(error)
    }) //bunu sonra duzelt
 
    // right
@@ -75,7 +75,10 @@ function getFetch() {
       ans2(data)
       return data
    })
-   .catch(err => console.log(err)) //bunu sonra duzelt
+   .catch(err => {
+      error.innerHTML = err;
+      container.append(error)
+   }) //bunu sonra duzelt
 }
 getFetch()
 
