@@ -153,6 +153,7 @@ h6 {
 .currency .active {
    background-color: #833AE0;
    color: #FFFFFF;
+   transition: .2s;
 }
 
 .calc {
