@@ -42,7 +42,7 @@ const constMoneyLeft = document.querySelector('.box-left .const-money')
 const constMoneyRight = document.querySelector('.box-right .const-money')
 const container = document.querySelector('main .container')
 
-let base = 'RUB', symbols = 'USD', ratio = 1, ratio2 = 1, error = null;
+let base = 'RUB', symbols = 'USD', ratio, ratio2;
 
 // Fetch
 // moneyIn.value = 1
@@ -52,33 +52,26 @@ function getFetch() {
       constMoneyRight.innerHTML = `1 ${symbols} = 1 ${symbols}`
       return moneyOut.value = moneyIn.value;
    }
-   // left
-   fetch(`https://api.exchangerate.host/latest?base=${base}&symbols=${symbols}`)
-   .then(res => res.json())
-   .then(data => {
-      ratio = data.rates[symbols]
-      ans(data)
-      return data
-   })
-   .catch(err => {
-      // error = document.createElement('p')
-      // error.classList.add('error');
-      // error.innerHTML = err;
-      // container.append(error)
-      console.log(err);
-   }) //bunu sonra duzelt
 
-   // right
-   fetch(`https://api.exchangerate.host/latest?base=${symbols}&symbols=${base}`)
-   .then(res => res.json())
-   .then(data => {
-      ratio2 = data.rates[base]
-      ans2(data)
-      return data
+   async function fetches(url) {
+      const response = await fetch(url)
+      const data = await response.json()
+      return data; 
+   }
+
+   Promise.all([
+      fetches(`https://api.exchangerate.host/latest?base=${base}&symbols=${symbols}`),
+      fetches(`https://api.exchangerate.host/latest?base=${symbols}&symbols=${base}`)
+   ])
+   .then(arr => {
+      ratio = arr[0].rates[symbols]
+      ans(arr[0])
+      ratio2 = arr[1].rates[base]
+      ans2(arr[1])
    })
    .catch(err => {
-      console.log(err);
-   }) //bunu sonra duzelt
+      alert('An Error Occurred!')
+   })
 }
 getFetch()
 
@@ -110,17 +103,16 @@ currencyOut.forEach(elem => elem.addEventListener('click', () => {
 }) )
 
 // check
-function ans(data) {
+function ans() {
    if(base == symbols)
       return moneyOut.value = moneyIn.value
    moneyOut.value = moneyIn.value * ratio;
    constMoneyLeft.innerHTML = `1 ${base} = ${ratio} ${symbols}`
 }
 
-function ans2(data) {
+function ans2() {
    constMoneyRight.innerHTML = `1 ${symbols} = ${ratio2} ${base}`
 }
-
 
 // (,) to (.)
 function point(e) {
@@ -137,7 +129,6 @@ function point(e) {
       e.target.selectionStart = e.target.selectionEnd = start + 1;
       e.preventDefault();
   }
-   
 }
 
 function number(e) {
@@ -163,8 +154,6 @@ function number(e) {
 }
 
 moneyIn.addEventListener('keypress', (e) => {
-   
-
    if(moneyIn.value.indexOf('.') != -1) {
       if((e.key === '.') || (e.key === ',')) {
          e.preventDefault()
@@ -190,7 +179,6 @@ moneyIn.addEventListener('keyup', (e) => {
    ans()
    if((moneyIn.value.length == 1) && (moneyIn.value[0] == '.'))
       moneyOut.value = '0.'
-   
 })
 
 moneyOut.addEventListener('keyup', () => {
@@ -200,5 +188,3 @@ moneyOut.addEventListener('keyup', () => {
    if((moneyOut.value.length == 1) && (moneyOut.value[0] == '.'))
       moneyIn.value = '0.'
 })
-
-// yoxlama
