@@ -150,6 +150,12 @@ h6 {
    border-radius: 0px 3px 3px 0px;
 }
 
+.currency li:hover {
+   background-color: #e03aae;
+   color: #FFFFFF;
+   transition: .2s;
+}
+
 .currency .active {
    background-color: #833AE0;
    color: #FFFFFF;
@@ -180,10 +186,4 @@ h6 {
    line-height: 14px;
    color: #C6C6C6;
    margin-left: 2px;
-}
-
-.error {
-   position: absolute;
-   bottom: 100px;
-   font-size: 18px;
 }

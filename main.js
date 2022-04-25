@@ -23,13 +23,12 @@ hamburger.addEventListener('click', () => {
 })
 
 let x = window.matchMedia("(max-width: 880px)")
-x.addListener(() => {
-
-if (x.matches) {
-   navBar.style.display = "none";
-} else {
-   navBar.style.display = "flex";
-}
+window.addEventListener('resize', () => {
+   if (x.matches) {
+      navBar.style.display = "none";
+   } else {
+      navBar.style.display = "flex";
+   }
 })
 
 // main
@@ -40,7 +39,6 @@ const moneyIn = document.querySelector('.box-left .money')
 const moneyOut = document.querySelector('.box-right .money')
 const constMoneyLeft = document.querySelector('.box-left .const-money')
 const constMoneyRight = document.querySelector('.box-right .const-money')
-const container = document.querySelector('main .container')
 
 let base = 'RUB', symbols = 'USD', ratio, ratio2;
 
