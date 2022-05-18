@@ -1,4 +1,4 @@
 # -currency-converter
  Currency converter design
 
-https://habibmustafa.github.io/modul-3/
+https://habibmustafa.github.io/Currency-Converter/
