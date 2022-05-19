@@ -1,4 +1,4 @@
 # -currency-converter
- Currency converter design
+Mutual converter from 4 currencies
 
 https://habibmustafa.github.io/Currency-Converter/
